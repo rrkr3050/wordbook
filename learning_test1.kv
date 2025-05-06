@@ -1,0 +1,389 @@
+homewindow:
+
+
+<Deckbutton@Button>:
+    font_size:25
+    size_hint_y: None
+
+<Adddeckbutton@Button>:
+    text:"new"
+    on_press:root.buttonClicked()
+
+<NewDeck@BoxLayout>:
+    Button:
+        id : newdeckbutton1
+        text: "NewDeck"
+        font_size:25
+        size_hint_y: None
+        on_press: root.newdeck()
+
+<Addedbutton@Button>
+    text: "new1"
+    font_size:25
+    size_hint_y: None
+    on_press : 
+        root.go_deck()
+
+
+
+<homewindow>:
+    canvas.before:
+        Color:
+            rgba: 240,240,240,1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    BoxLayout:
+        orientation:'vertical'
+        size:root.size
+        
+        ActionBar:
+            background_image: ''
+            background_color: (0,0,0,0.8)
+            ActionView:
+                text: "aiueo"
+
+                ActionPrevious:
+                    title: "home"
+                    with_previous: False
+            
+
+                    
+
+                ActionButton:
+                    text: "戻る"
+                    on_press: 
+                        root.manager.current = 'home'
+                        root.reset()
+
+                ActionButton:
+                    text: "ホーム"
+                    on_press: 
+                        root.manager.current = 'home'
+                        root.reset()
+
+        BoxLayout:
+            size:root.size
+            size_hint_y: 1
+
+            Label:
+                id:info_alllearnings
+                font_size: 16
+                text:root.text
+                color : 0, 0, 0, 1
+            
+            Label:
+                id:info_todaylearnings
+                font_size: 16
+                text:root.text
+                color : 0, 0, 0, 1
+
+            Label:
+                id:info
+                font_size: 16
+                text:"連続学習日数 : 1"
+                color : 0, 0, 0, 1
+
+        ScrollView:
+            id : homescroll
+            size_hint_y: 18
+            BoxLayout:
+                id: bola1
+                orientation:'vertical'
+                height: self.minimum_height
+                row_default_height: 2000
+                size_hint_y: None
+
+                Deckbutton:
+                    id:reload
+                    text:"デッキ更新"
+                    on_press: root.decksreload()
+
+                
+        
+
+
+
+<cardfront>:
+    canvas.before:
+        Color:
+            rgba: root.front_color
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    BoxLayout:
+
+        orientation:'vertical'
+        size:root.size
+
+        ActionBar:
+            ActionView:
+                ActionPrevious:
+                    id : actionbar
+                    title: root.text
+                    with_previous: True
+
+                ActionButton:
+                    text: "戻る"
+                    on_press: 
+                        root.manager.current = 'home'
+                        root.reset()
+
+                ActionButton:
+                    text: "ホーム"
+                    on_press: 
+                        root.manager.current = 'home'
+
+        Label:
+            id:frontword
+            font_size: 60
+            text:root.text
+            size_hint_y: 10
+            color : 0,0,0,1
+            
+
+        Button:
+            id:viewback
+            text:"裏を見る"
+            font_size:25
+            
+            on_press: 
+                #root.manager.current = 'back'
+
+                root.viewbackbutton()
+
+<cardback>:
+    canvas.before:
+        Color:
+            rgba: root.back_color
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    BoxLayout:
+        orientation:'vertical'
+
+        ActionBar:
+
+            ActionView:
+                ActionPrevious:
+                    id : back_actionbar
+                    title: root.deckname
+                    with_previous: True
+
+                ActionButton:
+                    text: "戻る"
+                    on_press: 
+                        root.manager.current = 'home'
+                        root.reset()
+
+                ActionButton:
+                    text: "ホーム"
+                    on_press: 
+                        root.manager.current = 'home'
+                        root.reset()
+
+            
+        
+        Label:
+            id:backword
+            font_size: 60
+            text:root.text
+            size_hint_y: 10
+            color :  0, 0, 0, 1
+
+        
+
+        BoxLayout:
+
+            Button:
+                id:ansbutton1
+                text:"分からない"
+                font_size:25
+                on_press: 
+                    root.ansbutton1()
+                    #root.manager.current = 'front'
+
+            Button:
+                id:ansbutton2
+                text:"難しい"
+                font_size:25
+                on_press: 
+                    root.ansbutton2()
+                    #root.manager.current = 'front'
+
+            Button:
+                id:ansbutton3
+                text:"分かった"
+                font_size:25
+                on_press: 
+                    root.ansbutton3()
+                    #root.manager.current = 'front'
+
+<beforedeck>:
+    canvas.before:
+        Color:
+            rgba: 240,240,240,1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    BoxLayout:
+        orientation:'vertical'
+        ActionBar:
+            ActionView:
+                ActionPrevious:
+                    id : bef_actionbar
+                    title: root.text
+                    with_previous: True
+
+                ActionButton:
+                    text: "戻る"
+                    on_press: 
+                        root.manager.current = 'home'
+                        root.reset()
+
+                ActionButton:
+                    text: "ホーム"
+                    on_press: 
+                        root.manager.current = 'home'
+                        root.reset()
+        BoxLayout:
+            orientation:'vertical'
+            size_hint_y: 10
+            Label:
+                id:beforedeck_text1
+                font_size: 40
+                text:root.text
+                size_hint_y: 5
+                color :  0, 0, 0, 1
+
+            Label:
+                id:beforedeck_text2
+                font_size: 30
+                text:root.text
+                size_hint_y: 5
+                color :  0, 0, 0, 1
+
+            Label:
+                id:beforedeck_text3
+                font_size: 30
+                text:root.text
+                size_hint_y: 5
+                color :  0, 0, 0, 1
+        
+
+        BoxLayout:
+            size_hint_y: 1
+            Button:
+                id:gofront
+                text:"グループの学習に進む"
+                font_size:25
+                on_press: root.gofront_button()
+
+            Button:
+                id:gohome
+                text:"ホームに戻る"
+                font_size:25
+                on_press: root.gohome_button()
+
+<waypoint>:
+    canvas.before:
+        Color:
+            rgba: 240,240,240,1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    BoxLayout:
+        orientation:'vertical'
+
+        ActionBar:
+            ActionView:
+                ActionPrevious:
+                    id : way_actionbar
+                    title: root.text
+                    with_previous: True
+
+                ActionButton:
+                    text: "戻る"
+                    on_press: 
+                        root.manager.current = 'home'
+                        root.reset()
+
+                ActionButton:
+                    text: "ホーム"
+                    on_press: 
+                        root.manager.current = 'home'
+                        root.reset()
+
+        Label:
+            id:waypoint_name
+            font_size: 40
+            text:root.text
+            size_hint_y: 5
+            color :  0, 0, 0, 1
+
+        Label:
+            id:waypoint_text
+            font_size: 30
+            text:root.text
+            size_hint_y: 5
+            color :  0, 0, 0, 1
+        
+
+        BoxLayout:
+            Button:
+                id:bbbbb
+                text:"次のグループに進む"
+                font_size:25
+                on_press: root.continue_button()
+
+            Button:
+                id:aaaa
+                text:"ホームに戻る"
+                font_size:25
+                on_press: root.gohome_button()
+
+<endcard>:
+    canvas.before:
+        Color:
+            rgba: 240,240,240,1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    BoxLayout:
+        orientation:'vertical'
+
+        ActionBar:
+            ActionView:
+                ActionPrevious:
+                    id : end_actionbar
+                    title: root.text
+                    with_previous: True
+
+                ActionButton:
+                    text: "戻る"
+                    on_press: 
+                        root.manager.current = 'home'
+                        root.reset()
+
+                ActionButton:
+                    text: "ホーム"
+                    on_press: 
+                        root.manager.current = 'home'
+                        root.reset()
+
+        Label:
+            id:endword
+            font_size: 40
+            text:"今日の課題は終了しました"
+            size_hint_y: 10
+            color :  0, 0, 0, 1
+            
+        Button:
+            id:backhome
+            text:"ホーム"
+            font_size:25
+            on_press: root.button_gohome()

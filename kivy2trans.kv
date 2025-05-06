@@ -1,0 +1,61 @@
+cardfront:
+
+<cardfront@BoxLayout>:
+    orientation:'vertical'
+    size:root.size
+
+    Label:
+        id:frontword
+        font_size: 60
+        text:root.text
+        size_hint_y: 10
+
+    Button:
+        id:viewback
+        text:"裏を見る"
+        font_size:25
+        on_press: root.viewbackbutton()
+
+    
+<cardback@BoxLayout>:
+    orientation:'vertical'
+    Label:
+        id:backword
+        font_size: 60
+        text:root.text
+        size_hint_y: 10
+
+    BoxLayout:
+
+        Button:
+            id:ansbutton1
+            text:"わからない"
+            font_size:25
+            on_press: root.ansbutton1()
+
+        Button:
+            id:ansbutton2
+            text:"難しい"
+            font_size:25
+            on_press: root.ansbutton2()
+
+        Button:
+            id:ansbutton3
+            text:"分かった"
+            font_size:25
+            on_press: root.ansbutton3()
+
+<endcard@BoxLayout>:
+    orientation:'vertical'
+
+    Label:
+        id:endword
+        font_size: 40
+        text:"今日の課題は終了しました"
+        size_hint_y: 10
+
+    Button:
+        id:backhome
+        text:"ホーム"
+        font_size:25
+        on_press: root.button_gohome()

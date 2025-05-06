@@ -1,0 +1,157 @@
+homewindow:
+
+
+
+<Deckbutton@Button>:
+    font_size:25
+    size_hint_y: None
+
+<Adddeckbutton@Button>:
+    text:"new"
+    on_press:root.buttonClicked()
+
+<NewDeck@BoxLayout>:
+    Button:
+        id : newdeckbutton1
+        text: "NewDeck"
+        font_size:25
+        size_hint_y: None
+        on_press: root.newdeck()
+
+
+
+<Addedbutton@Button>
+    text: "new1"
+    font_size:25
+    size_hint_y: None
+    on_press : root.go_newdeck()
+
+
+<layo@BoxLayout>
+    orientation:'vertical'
+    height: self.minimum_height
+    row_default_height: 2000
+    size_hint_y: None
+
+<homewindow@BoxLayout>:
+    orientation:'vertical'
+    size:root.size
+    ActionBar:
+        ActionView:
+            ActionPrevious:
+                title: "home"
+                with_previous: False
+
+    ScrollView:
+        id : homescroll
+        BoxLayout:
+            id: bola1
+            orientation:'vertical'
+            height: self.minimum_height
+            row_default_height: 2000
+            size_hint_y: None
+
+            Label:
+                id:home
+                font_size: 10
+                text:"home"
+
+            #Deckbutton:
+                #id:addbutton
+                #
+                #on_press: root.Addbutton()
+
+            Deckbutton:
+                id:golc1
+                text:"単語帳1"
+                
+                on_press: root.golc1()
+
+            Deckbutton:
+                id:golc2
+                text:"単語帳2"
+                on_press: root.golc2()
+
+            Deckbutton:
+                id:golc3
+                text:"単語帳3"
+                on_press: root.golc3()
+
+                
+
+
+<cardfront@BoxLayout>:
+    orientation:'vertical'
+    size:root.size
+
+    ActionBar:
+        ActionView:
+            ActionPrevious:
+                title: root.deckname
+                with_previous: False
+
+    Label:
+        id:frontword
+        font_size: 60
+        text:root.text
+        size_hint_y: 10
+
+    Button:
+        id:viewback
+        text:"裏を見る"
+        font_size:25
+        on_press: root.viewbackbutton()
+
+    
+<cardback@BoxLayout>:
+    orientation:'vertical'
+
+    ActionBar:
+
+        ActionView:
+            ActionPrevious:
+                title: root.deckname
+                with_previous: False
+    
+    Label:
+        id:backword
+        font_size: 60
+        text:root.text
+        size_hint_y: 10
+
+    
+
+    BoxLayout:
+
+        Button:
+            id:ansbutton1
+            text:"わからない"
+            font_size:25
+            on_press: root.ansbutton1()
+
+        Button:
+            id:ansbutton2
+            text:"難しい"
+            font_size:25
+            on_press: root.ansbutton2()
+
+        Button:
+            id:ansbutton3
+            text:"分かった"
+            font_size:25
+            on_press: root.ansbutton3()
+
+<endcard@BoxLayout>:
+    orientation:'vertical'
+
+    Label:
+        id:endword
+        font_size: 40
+        text:"今日の課題は終了しました"
+        size_hint_y: 10
+
+    Button:
+        id:backhome
+        text:"ホーム"
+        font_size:25
+        on_press: root.button_gohome()
