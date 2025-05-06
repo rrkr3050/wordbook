@@ -372,3 +372,10 @@ def card_check_changescreen(restcn):
     return screenname
 #restcn = finalize_restcn(temp_offsetcn,94,95,words1)
 #print(restcn)
+
+def consec_change(data):
+    if not lastplay_date_is_today(data):
+        if lastplay_date_is_yesterday(data):
+            data.loc[0,"consec_days"] += 1
+        else:
+            data.loc[0,"consec_days"] = 0
